@@ -1,14 +1,43 @@
 pipeline{
     agent any
     stages{
+        stage("BranchMain"){
+                when{
+                    branch 'main'
+                }
+            steps{
+                echo "========Echo BranchMain========"
+            }
+            post{
+                success{
+                    echo "========BranchMain executed successfully========"
+                }
+                failure{
+                    echo "========BranchMain execution failed========"
+                }
+            }
+        }
+        stage("BranchDev"){
+                when{
+                    branch 'dev'
+                }
+            steps{
+                echo "========Echo BranchDev========"
+            }
+            post{
+                success{
+                    echo "========BranchDev executed successfully========"
+                }
+                failure{
+                    echo "========BranchDev execution failed========"
+                }
+            }
+        }
         stage("One"){
             steps{
                 echo "========Echo One========"
             }
             post{
-                always{
-                    echo "========always========"
-                }
                 success{
                     echo "========One executed successfully========"
                 }
@@ -22,9 +51,6 @@ pipeline{
                 echo "====++++Echo Two++++===="
             }
             post{
-                always{
-                    echo "====++++always++++===="
-                }
                 success{
                     echo "====++++Two executed successfully++++===="
                 }
@@ -39,9 +65,6 @@ pipeline{
                 input('¿Quieres proceder con el despliegue?')
             }
             post{
-                always{
-                    echo "====++++USER INPUT INFO++++===="
-                }
                 success{
                     echo "====++++Three executed successfully++++===="
                 }
@@ -56,9 +79,6 @@ pipeline{
                 echo "Desplegando aplicación"
             }
             post{
-                always{
-                    echo "====++++Despliegue INFO++++===="
-                }
                 success{
                     echo "====++++Despliegue executed successfully++++===="
                 }
@@ -70,9 +90,6 @@ pipeline{
         }
     }
     post{
-        always{
-            echo "========always========"
-        }
         success{
             echo "========pipeline executed successfully ========"
         }
