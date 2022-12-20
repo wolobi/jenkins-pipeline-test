@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("One"){
             steps{
-                echo "========executing One========"
+                echo "========Echo One========"
             }
             post{
                 always{
@@ -19,7 +19,7 @@ pipeline{
         }
         stage("Two"){
             steps{
-                echo "====++++executing Two++++===="
+                echo "====++++Echo Two++++===="
             }
             post{
                 always{
@@ -30,6 +30,40 @@ pipeline{
                 }
                 failure{
                     echo "====++++Two execution failed++++===="
+                }
+        
+            }
+        }
+        stage("Three"){
+            steps{
+                input('¿Quieres proceder con el despliegue?')
+            }
+            post{
+                always{
+                    echo "====++++USER INPUT INFO++++===="
+                }
+                success{
+                    echo "====++++Three executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Three execution failed++++===="
+                }
+        
+            }
+        }
+        stage("Four"){
+            steps{
+                echo "Desplegando aplicación"
+            }
+            post{
+                always{
+                    echo "====++++Despliegue INFO++++===="
+                }
+                success{
+                    echo "====++++Despliegue executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Despliegue execution failed++++===="
                 }
         
             }
