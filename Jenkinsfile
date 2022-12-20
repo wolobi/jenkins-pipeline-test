@@ -35,7 +35,7 @@ pipeline{
         }
         stage("One"){
             steps{
-                echo "========Echo One========"
+                echo "========Echo One======== " + BRANCH_NAME
             }
             post{
                 success{
