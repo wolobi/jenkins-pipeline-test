@@ -19,7 +19,9 @@ pipeline{
         }
         stage("BranchDev"){
                 when{
-                    branch 'dev'
+                    not{
+                        branch 'dev'
+                    }
                 }
             steps{
                 echo "========Echo BranchDev========"
@@ -35,7 +37,7 @@ pipeline{
         }
         stage("One"){
             steps{
-                echo "========Echo One======== " + env.BRANCH_NAME
+                echo "========Echo One======== "
             }
             post{
                 success{
