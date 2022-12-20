@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("BranchMain"){
                 when{
-                    branch 'main'
+                    branch '*/main'
                 }
             steps{
                 echo "========Echo BranchMain========"
